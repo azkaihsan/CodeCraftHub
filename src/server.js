@@ -1,11 +1,13 @@
-javascript
+// server.js - Entry point for the server
 const app = require('./app');
 const dotenv = require('dotenv');
 
+// Load environment variables
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; // Use PORT from environment variables or default to 5000
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

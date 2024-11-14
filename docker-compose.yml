@@ -1,0 +1,21 @@
+services:
+  user-service:
+    build: .
+    ports:
+      - "5000:5000" # Map the container port 5000 to the host port 5000
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/user-service # MongoDB URI
+      JWT_SECRET: your_jwt_secret # Set your JWT secret here
+      PORT: 5000 # Define the port
+    depends_on:
+      - mongo # Wait for MongoDB to be ready
+
+  mongo:
+    image: mongo:latest # Use the official MongoDB image
+    ports:
+      - "27017:27017" # Expose MongoDB port
+    volumes:
+      - mongo-data:/data/db # Persist data in a Docker volume
+
+volumes:
+  mongo-data: # Define a volume for MongoDB data persistence
